@@ -1,0 +1,106 @@
+===================
+84-nm-drivers.rules
+===================
+
+SUBSYSTEM!="net", GOTO="nm_drivers_end"
+ACTION!="add|change|move", GOTO="nm_drivers_end"
+
+# Determine ID_NET_DRIVER if there's no ID_NET_DRIVER or DRIVERS (old udev?)
+ENV{ID_NET_DRIVER}=="?*", GOTO="nm_drivers_end"
+DRIVERS=="?*", GOTO="nm_drivers_end"
+PROGRAM="/bin/sh -c '/usr/sbin/ethtool -i $$1 |/usr/bin/sed -n s/^driver:\ //p' -- $env{INTERFACE}", ENV{ID_NET_DRIVER}="%c"
+
+LABEL="nm_drivers_end"
+
+----
+
+(rules
+  (rule
+    (match
+      (match_op)
+      (value))
+    (assignment
+      (assignment_op)
+      (value)))
+  (rule
+    (match
+      (match_op)
+      (value
+        (pattern)
+        (pattern)))
+    (assignment
+      (assignment_op)
+      (value)))
+  (comment)
+  (rule
+    (match
+      (env_var)
+      (match_op)
+      (value
+        (pattern)
+        (pattern)))
+    (assignment
+      (assignment_op)
+      (value)))
+  (rule
+    (match
+      (match_op)
+      (value
+        (pattern)
+        (pattern)))
+    (assignment
+      (assignment_op)
+      (value)))
+  (rule
+    (match
+      (assignment_op)
+      (value)
+      (value
+        (var_sub)
+        (pattern)
+        (var_sub
+          (env_var)))
+      (value))
+    (assignment
+      (env_var)
+      (assignment_op)
+      (value)))
+  (rule
+    (assignment
+      (assignment_op)
+      (value))))
+
+======================
+90-daxctl-device.rules
+======================
+
+ACTION=="add", SUBSYSTEM=="dax", TAG+="systemd",\
+  PROGRAM="/usr/bin/systemd-escape -p --template=daxdev-reconfigure@.service $env{DEVNAME}",\
+  ENV{SYSTEMD_WANTS}="%c"
+
+----
+
+(rules
+  (rule
+    (match
+      (match_op)
+      (value))
+    (match
+      (match_op)
+      (value))
+    (assignment
+      (assignment_op)
+      (value))
+    (linebreak)
+    (match
+      (assignment_op)
+      (value)
+      (value
+        (var_sub
+          (env_var)))
+      (value))
+    (linebreak)
+    (assignment
+      (env_var)
+      (assignment_op)
+      (value))))

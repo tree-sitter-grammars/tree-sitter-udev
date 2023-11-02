@@ -1,0 +1,35 @@
+{
+  "name": "tree-sitter-udev",
+  "version": "0.1.1",
+  "license": "MIT",
+  "description": "udev grammar for tree-sitter",
+  "repository": "ObserverOfTime/tree-sitter-udev",
+  "author": {
+    "name": "ObserverOfTime",
+    "email": "chronobserver@disroot.org",
+    "url": "https://observeroftime.github.io/"
+  },
+  "keywords": [
+    "tree-sitter",
+    "parser",
+    "lexer"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "parse": "tree-sitter parse",
+    "test": "tree-sitter test"
+  },
+  "main": "bindings/node",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "tree-sitter": [
+    {
+      "scope": "text.udev",
+      "file-types": ["rules"]
+    }
+  ]
+}
