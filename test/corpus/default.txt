@@ -18,57 +18,67 @@ LABEL="nm_drivers_end"
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (comment)
   (rule
     (match
       (env_var)
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (assignment_op)
-      (value)
       (value
-        (var_sub)
-        (pattern)
-        (var_sub
-          (env_var)))
-      (value))
+        (content
+          (var_sub)
+          (pattern)
+          (var_sub
+            (env_var)))))
     (assignment
       (env_var)
       (assignment_op)
-      (value)))
+      (value
+        (content
+          (fmt_sub)))))
   (rule
     (assignment
       (assignment_op)
-      (value))))
+      (value
+        (content)))))
 
 ======================
 90-daxctl-device.rules
@@ -84,23 +94,27 @@ ACTION=="add", SUBSYSTEM=="dax", TAG+="systemd",\
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value))
+      (value
+        (content)))
     (linebreak)
     (match
       (assignment_op)
-      (value)
       (value
-        (var_sub
-          (env_var)))
-      (value))
+        (content
+          (var_sub
+            (env_var)))))
     (linebreak)
     (assignment
       (env_var)
       (assignment_op)
-      (value))))
+      (value
+        (content
+          (fmt_sub))))))

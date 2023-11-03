@@ -138,6 +138,33 @@
     "fields": {}
   },
   {
+    "type": "content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "c_escape",
+          "named": true
+        },
+        {
+          "type": "fmt_sub",
+          "named": true
+        },
+        {
+          "type": "pattern",
+          "named": true
+        },
+        {
+          "type": "var_sub",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "env_var",
     "named": true,
     "fields": {}
@@ -348,23 +375,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "c_escape",
-          "named": true
-        },
-        {
-          "type": "fmt_sub",
-          "named": true
-        },
-        {
-          "type": "pattern",
-          "named": true
-        },
-        {
-          "type": "var_sub",
+          "type": "content",
           "named": true
         }
       ]

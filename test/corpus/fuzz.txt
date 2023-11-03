@@ -30,101 +30,113 @@ LABEL="evdev_end"
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (comment)
   (rule
     (assignment
       (import_type)
       (assignment_op)
-      (value))
+      (value
+        (content)))
     (linebreak)
     (assignment
       (run_type)
-      (assignment_op)
-      (value)
-      (value)
-      (value))
-    (assignment
-      (assignment_op)
-      (value)))
-  (comment)
-  (rule
-    (match
-      (match_op)
-      (value))
-    (linebreak)
-    (assignment
-      (import_type)
       (assignment_op)
       (value
-        (pattern)))
-    (linebreak)
-    (assignment
-      (run_type)
-      (assignment_op)
-      (value)
-      (value)
-      (value))
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (comment)
   (rule
     (match
       (match_op)
       (value
-        (pattern)))
+        (content)))
+    (linebreak)
     (assignment
       (import_type)
       (assignment_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (linebreak)
     (assignment
       (run_type)
       (assignment_op)
-      (value)
-      (value)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (comment)
   (rule
     (match
       (match_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (assignment
       (import_type)
       (assignment_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (linebreak)
     (assignment
       (run_type)
       (assignment_op)
-      (value)
-      (value)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
+  (comment)
+  (rule
+    (match
+      (match_op)
+      (value
+        (content
+          (pattern))))
+    (assignment
+      (import_type)
+      (assignment_op)
+      (value
+        (content
+          (pattern))))
+    (linebreak)
+    (assignment
+      (run_type)
+      (assignment_op)
+      (value
+        (content)))
+    (assignment
+      (assignment_op)
+      (value
+        (content))))
   (rule
     (assignment
       (assignment_op)
-      (value))))
+      (value
+        (content)))))
 
 ============
 serial.rules
@@ -161,188 +173,220 @@ LABEL="serial_end"
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (env_var)
       (assignment_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (env_var)
       (assignment_op)
-      (value))
+      (value
+        (content
+          (var_sub
+            (attribute)))))
     (assignment
       (env_var)
       (assignment_op)
-      (value)))
+      (value
+        (content
+          (var_sub
+            (attribute))))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (import_type)
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (import_type)
       (assignment_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (import_type)
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (comment)
   (rule
     (match
       (match_op)
       (value
-        (pattern)
-        (pattern)
-        (pattern)
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern)
+          (pattern)
+          (pattern)
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (env_var)
       (assignment_op)
-      (value)))
+      (value
+        (content
+          (var_sub
+            (attribute))))))
   (rule
     (assignment
       (import_type)
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (env_var)
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (match
       (env_var)
       (match_op)
       (value))
     (assignment
       (assignment_op)
-      (value)
       (value
-        (var_sub
-          (env_var)))
-      (value)))
+        (content
+          (var_sub
+            (env_var))))))
   (rule
     (match
       (env_var)
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (match
       (env_var)
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content
+          (pattern)
+          (pattern))))
     (assignment
       (assignment_op)
-      (value)
       (value
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var)))
-      (value)))
+        (content
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))))))
   (rule
     (assignment
       (import_type)
       (assignment_op)
-      (value)))
-  (rule
-    (match
-      (env_var)
-      (match_op)
-      (value))
-    (assignment
-      (assignment_op)
-      (value)))
-  (rule
-    (match
-      (match_op)
-      (value))
-    (assignment
-      (env_var)
-      (assignment_op)
-      (value)))
-  (rule
-    (match
-      (env_var)
-      (match_op)
-      (value))
-    (assignment
-      (assignment_op)
-      (value)))
-  (rule
-    (match
-      (env_var)
-      (match_op)
-      (value))
-    (assignment
-      (assignment_op)
-      (value)
       (value
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var)))
-      (value)))
+        (content))))
   (rule
     (match
       (env_var)
+      (match_op)
+      (value))
+    (assignment
+      (assignment_op)
+      (value
+        (content))))
+  (rule
+    (match
       (match_op)
       (value
-        (pattern)
-        (pattern)))
+        (content)))
+    (assignment
+      (env_var)
+      (assignment_op)
+      (value
+        (content
+          (var_sub
+            (attribute))))))
+  (rule
+    (match
+      (env_var)
+      (match_op)
+      (value))
     (assignment
       (assignment_op)
-      (value)
       (value
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var))
-        (var_sub
-          (env_var)))
-      (value)))
+        (content))))
+  (rule
+    (match
+      (env_var)
+      (match_op)
+      (value))
+    (assignment
+      (assignment_op)
+      (value
+        (content
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))))))
+  (rule
+    (match
+      (env_var)
+      (match_op)
+      (value
+        (content
+          (pattern)
+          (pattern))))
+    (assignment
+      (assignment_op)
+      (value
+        (content
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))
+          (var_sub
+            (env_var))))))
   (rule
     (assignment
       (assignment_op)
-      (value))))
+      (value
+        (content)))))
 
 ==========================
 sound-card.rules (partial)
@@ -361,40 +405,50 @@ ATTR{pcmC%nD0p/pcm_class}=="modem", ENV{SOUND_CLASS}="modem", GOTO="sound_end"
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (match
       (match_op)
       (value
-        (pattern)))
+        (content
+          (pattern))))
     (assignment
       (attribute)
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value)))
+      (value
+        (content))))
   (rule
     (match
       (attribute
         (fmt_sub))
       (match_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (env_var)
       (assignment_op)
-      (value))
+      (value
+        (content)))
     (assignment
       (assignment_op)
-      (value))))
+      (value
+        (content)))))

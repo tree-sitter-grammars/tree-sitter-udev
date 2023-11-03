@@ -39,8 +39,8 @@ module.exports = grammar({
       seq(key('DEVPATH'), $.match_op, $.value),
       seq(key('KERNEL'), $.match_op, $.value),
       seq(key('KERNELS'), $.match_op, $.value),
-      seq(key('NAME'), $.match_op, $._sub_value),
-      seq(key('SYMLINK'), $.match_op, $._sub_value),
+      seq(key('NAME'), $.match_op, alias($._sub_value, $.value)),
+      seq(key('SYMLINK'), $.match_op, alias($._sub_value, $.value)),
       seq(key('SUBSYSTEM'), $.match_op, $.value),
       seq(key('SUBSYSTEMS'), $.match_op, $.value),
       seq(key('DRIVER'), $.match_op, $.value),
@@ -48,27 +48,27 @@ module.exports = grammar({
       seq(key('ATTR'), I('{'), $.attribute, '}', $.match_op, $.value),
       seq(key('ATTRS'), I('{'), $.attribute, '}', $.match_op, $.value),
       seq(key('SYSCTL'), I('{'), $.kernel_param, '}', $.match_op, $.value),
-      seq(key('ENV'), I('{'), $.env_var, '}', $.match_op, $.value),
+      seq(key('ENV'), I('{'), $.env_var, '}', $.match_op, alias($._sub_value, $.value)),
       seq(key('CONST'), I('{'), $.system_const, '}', $.match_op, $.value),
       seq(key('TAG'), $.match_op, $.value),
       seq(key('TAGS'), $.match_op, $.value),
       seq(key('TEST'), O(seq(I('{'), $.octal, '}')), $.match_op, $.value),
-      seq(key('PROGRAM'), choice($.match_op, $.assignment_op), $._sub_value),
+      seq(key('PROGRAM'), choice($.match_op, $.assignment_op), alias($._sub_value, $.value)),
       seq(key('RESULT'), $.match_op, $.value),
     ),
 
     assignment: $ => choice(
-      seq(key('NAME'), $.assignment_op, $._sub_value),
-      seq(key('SYMLINK'), $.assignment_op, $._sub_value),
-      seq(key('OWNER'), $.assignment_op, $._sub_value),
-      seq(key('GROUP'), $.assignment_op, $._sub_value),
-      seq(key('MODE'), $.assignment_op, $._sub_value),
-      seq(key('SECLABEL'), I('{'), $.seclabel, '}', $.assignment_op, $._sub_value),
+      seq(key('NAME'), $.assignment_op, alias($._sub_value, $.value)),
+      seq(key('SYMLINK'), $.assignment_op, alias($._sub_value, $.value)),
+      seq(key('OWNER'), $.assignment_op, alias($._sub_value, $.value)),
+      seq(key('GROUP'), $.assignment_op, alias($._sub_value, $.value)),
+      seq(key('MODE'), $.assignment_op, alias($._sub_value, $.value)),
+      seq(key('SECLABEL'), I('{'), $.seclabel, '}', $.assignment_op, alias($._sub_value, $.value)),
       seq(key('ATTR'), I('{'), $.attribute, '}', $.assignment_op, $.value),
       seq(key('SYSCTL'), I('{'), $.kernel_param, '}', $.assignment_op, $.value),
-      seq(key('ENV'), I('{'), $.env_var, '}', $.assignment_op, $.value),
+      seq(key('ENV'), I('{'), $.env_var, '}', $.assignment_op, alias($._sub_value, $.value)),
       seq(key('TAG'), $.assignment_op, $.value),
-      seq(key('RUN'), O(seq(I('{'), $.run_type, '}')), $.assignment_op, $._sub_value),
+      seq(key('RUN'), O(seq(I('{'), $.run_type, '}')), $.assignment_op, alias($._sub_value, $.value)),
       seq(key('LABEL'), $.assignment_op, $.value),
       seq(key('GOTO'), $.assignment_op, $.value),
       seq(key('IMPORT'), I('{'), $.import_type, '}', choice($.assignment_op, $.match_op), $.value),
@@ -102,16 +102,16 @@ module.exports = grammar({
     assignment_op: _ => token(choice('=', '-=', '+=', ':=')),
 
     value: $ => choice(
-      seq('"', O($._content), I('"')),
-      seq('e', I('"'), O($._c_content), I('"')),
+      seq('"', O($.content), I('"')),
+      seq('e', I('"'), O(alias($._c_content, $.content)), I('"')),
     ),
 
-    _sub_value: $ => alias(choice(
-      seq('"', O($._sub_content), I('"')),
-      seq('e', I('"'), O($._sub_c_content), I('"')),
-    ), $.value),
+    _sub_value: $ => choice(
+      seq('"', O(alias($._sub_content, $.content)), I('"')),
+      seq('e', I('"'), O(alias($._sub_c_content, $.content)), I('"')),
+    ),
 
-    _content: $ => repeat1(
+    content: $ => repeat1(
       choice(
         /[^"]/,
         '\\"',
