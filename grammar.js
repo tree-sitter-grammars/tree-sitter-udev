@@ -2,8 +2,6 @@
  * @file Tree-sitter grammar definition
  * @author ObserverOfTime
  * @license MIT
- * @see {@link https://www.freedesktop.org/software/systemd/man/latest/udev.html|manual}
- * @see {@link https://en.wikipedia.org/wiki/Escape_sequences_in_C#Table_of_escape_sequences|C escapes}
  */
 
 const O = optional, I = token.immediate;
