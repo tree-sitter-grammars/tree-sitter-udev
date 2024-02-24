@@ -1,21 +1,51 @@
-name: Test grammar
+name: CI
 
 on:
   push:
-    branches: ["*"]
+    branches: [master]
     paths:
       - grammar.js
       - src/**
       - bindings/**
       - binding.gyp
   pull_request:
-    branches: ["*"]
     paths:
       - grammar.js
       - src/**
       - bindings/**
       - binding.gyp
 
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
 jobs:
   test:
-    uses: tree-sitter-grammars/.github/.github/workflows/ci.yml@main
+    name: Test parser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up repository
+        uses: tree-sitter-grammars/actions/setup@main
+        with:
+          node-version: ${{vars.NODE_VERSION}}
+      - name: Clone systemd rules
+        uses: actions/checkout@v4
+        with:
+          path: examples/systemd
+          repository: systemd/systemd
+          sparse-checkout: |-
+            rules.d/
+            test/fuzz/fuzz-udev-rules/
+      - name: Clone openSUSE rules
+        uses: actions/checkout@v4
+        with:
+          path: examples/udev-extra-rules
+          repository: openSUSE/udev-extra-rules
+      - name: Run tests
+        uses: tree-sitter-grammars/actions/test@main
+        with:
+          test-library: true
+          examples: |-
+            examples/systemd/rules.d/*.rules
+            examples/systemd/test/fuzz/fuzz-udev-rules/*.rules
+            examples/udev-extra-rules/*.rules
