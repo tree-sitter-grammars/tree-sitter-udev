@@ -31,6 +31,8 @@
     {
       "scope": "text.udev",
       "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm",
+      "tags": "queries/tags.scm",
       "file-types": ["rules"]
     }
   ]

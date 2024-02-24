@@ -1,0 +1,17 @@
+KERNEL=="sd[a-z]", ATTR{queue/rotational}!="0", ATTR{queue/scheduler}="bfq"
+#          ^^^^^ @string.regexp
+#                  ^^^^ @keyword
+#                       ^^^^^^^^^^^^^^^^ @attribute
+#                                               ^^^^ @property
+#                                                                     ^^^^^ @string
+KERNEL=="sd[a-z]|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
+    ATTR{queue/scheduler}="mq-deadline"
+KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/scheduler}="none"
+#     ^^ @operator
+#                        ^ @punctuation.delimiter
+#                              ^ @punctuation.bracket
+#                                              ^ @punctuation.bracket
+#                                               ^ @operator
+
+
+# vim:ft=udevrules:
