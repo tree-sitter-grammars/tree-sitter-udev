@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-udev",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "description": "udev grammar for tree-sitter",
   "repository": "tree-sitter-grammars/tree-sitter-udev",
@@ -12,23 +12,25 @@
   "keywords": [
     "tree-sitter",
     "parser",
-    "lexer"
+    "lexer",
+    "udev"
   ],
   "scripts": {
-    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate --no-bindings",
     "parse": "tree-sitter parse",
     "test": "tree-sitter test"
   },
   "main": "bindings/node",
   "dependencies": {
-    "nan": "^2.17.1"
+    "nan": "^2.18.0"
   },
   "devDependencies": {
-    "tree-sitter-cli": "~0.21.0-pre-release-1"
+    "tree-sitter-cli": "~0.21.0"
   },
   "tree-sitter": [
     {
       "scope": "text.udev",
+      "highlights": "queries/highlights.scm",
       "file-types": ["rules"]
     }
   ]
