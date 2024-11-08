@@ -24,10 +24,10 @@ jobs:
     name: Test parser
     runs-on: ubuntu-latest
     steps:
-      - name: Set up repository
-        uses: tree-sitter/parser-setup-action@v1.1
-        with:
-          node-version: ${{vars.NODE_VERSION}}
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v1
       - name: Clone systemd rules
         uses: actions/checkout@v4
         with:
@@ -42,9 +42,11 @@ jobs:
           path: examples/udev-extra-rules
           repository: openSUSE/udev-extra-rules
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v1.2
+        uses: tree-sitter/parser-test-action@v2
+      - name: Parse sample files
+        uses: tree-sitter/parse-action@v4
         with:
-          corpus-files: |-
+          files: |-
             examples/systemd/rules.d/*.rules
             examples/systemd/test/fuzz/fuzz-udev-rules/*.rules
             examples/udev-extra-rules/*.rules

@@ -4,6 +4,9 @@
  * @license MIT
  */
 
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 const O = optional, I = token.immediate;
 
 /** @param {string} name */

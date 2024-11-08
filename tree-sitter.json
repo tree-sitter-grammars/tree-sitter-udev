@@ -1,0 +1,29 @@
+{
+  "grammars": [
+    {
+      "name": "udev",
+      "scope": "source.udev",
+      "file-types": [
+        "rules"
+      ],
+      "injection-regex": "^udev$",
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm",
+      "tags": "queries/tags.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.3.0",
+    "license": "MIT",
+    "description": "udev rules grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "ObserverOfTime",
+        "email": "chronobserver@disroot.org"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-udev"
+    }
+  }
+}

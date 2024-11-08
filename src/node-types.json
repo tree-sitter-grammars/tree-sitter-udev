@@ -354,6 +354,7 @@
   {
     "type": "rules",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
